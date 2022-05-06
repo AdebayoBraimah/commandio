@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-"""Abstract base class file IO methods, functions and operations.
+"""Abstract base class file IO methods, functions and operations for the
+``commandio`` package.
 """
 import os
 import subprocess
