@@ -6,24 +6,28 @@ import subprocess
 from warnings import warn
 
 from shutil import copy, copytree, move
-
 from typing import Any, List, Tuple, Union
-
 from abc import ABC, abstractmethod
 
 
 class IOBaseObj(ABC):
-    """IO abstract base class (``ABC``) object that encapsulates methods related to file and directory manipulation.
+    """IO abstract base class (``ABC``) object that encapsulates methods
+    related to file and directory manipulation.
 
-    This ``ABC`` cannot be directly instantiated, and **MUST** used by a child/sub-class that inherits from this class.
-    Additionally, the ``copy`` class method (shown in abstract methods) **MUST** be overwritten when inheriting from this class.
+    This ``ABC`` cannot be directly instantiated, and **MUST** used by a
+    child/sub-class that inherits from this class. Additionally, the ``copy`
+    class method (shown in abstract methods) **MUST** be overwritten when
+    inheriting from this class.
 
     Attributes:
         src: Input string that represents a file or directory.
 
     Abstract methods:
-        copy: Copies a file or recursively copies a directory using ``copy`` and ``copytree`` from ``shutil``.
-            This method may need to be implemented differently should other aspects of the data need to be preserved (i.e. needing to copy the file metadata with the file).
+        copy: Copies a file or recursively copies a directory using ``copy``
+            and ``copytree`` from ``shutil``. This method may need to be
+            implemented differently should other aspects of the data need
+            to be preserved (i.e. needing to copy the file metadata with the
+            file).
 
     Usage example:
         >>> # Initialize child class and inherit
@@ -89,7 +93,8 @@ class IOBaseObj(ABC):
             dst: Destination file path.
 
         Returns:
-            String that reprents the relative file path of the object from the destination file or directory.
+            String that reprents the relative file path of the object from the
+                destination file or directory.
         """
         if os.path.isfile(self.src):
             return os.path.join(
@@ -125,10 +130,12 @@ class IOBaseObj(ABC):
             "abspath/to/file_namt.txt"
 
         Arguments:
-            follow_sym_links: If set to true, the absolute path of the symlinked file is returned.
+            follow_sym_links: If set to true, the absolute path of the
+                symlinked file is returned.
 
         Returns:
-            String that represents the absolute file path if it exists, otherwise ``None`` is returned.
+            String that represents the absolute file path if it exists,
+                otherwise ``None`` is returned.
         """
         if follow_sym_links and os.path.exists(self.src):
             return os.path.abspath(os.path.realpath(self.src))
@@ -138,7 +145,8 @@ class IOBaseObj(ABC):
     def sym_link(self, dst: str, relative: bool = False) -> str:
         """Creates a symbolic link with an absolute or relative file path.
 
-        NOTE: If a directory is the used as the input object, then the linked destination is returned.
+        NOTE: If a directory is the used as the input object, then the
+            linked destination is returned.
 
         Usage example:
             >>> # Initialize child class and inherit
@@ -165,7 +173,8 @@ class IOBaseObj(ABC):
 
         Arguments:
             dst: Destination file path.
-            relative: Symbolically link the file or directory using a relative path.
+            relative: Symbolically link the file or directory using a relative
+                path.
 
         Returns:
             String that reprents the absolute path of the sym linked file path.
@@ -292,7 +301,8 @@ class IOBaseObj(ABC):
             "/abs/path/to"
 
         Returns:
-            String that represents the directory name of the file or the parent directory of the directory.
+            String that represents the directory name of the file or the parent
+                directory of the directory.
         """
         return os.path.dirname(self.abspath())
 
