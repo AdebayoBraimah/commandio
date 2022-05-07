@@ -5,14 +5,6 @@ from enum import Enum, unique
 
 
 @unique
-class NiiHeaderField(Enum):
-    """NIFTI file header field options."""
-
-    descrip: str = "descrip"
-    intent_name: str = "intent_name"
-
-
-@unique
 class LogLevel(Enum):
     """Log level enumerators."""
 
