@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Utility module for ``xfm_tck`` tractography pipeline.
+"""Utility module for the ``commandio`` package.
 """
 import os
 
