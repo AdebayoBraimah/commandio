@@ -3,23 +3,24 @@
 """
 import logging
 from datetime import datetime
+from typing import Any, Dict
 
-from xfm_tck.utils.fileio import File
-from xfm_tck.utils.enums import LogLevel
+from fileio import File
+from enums import LogLevel
 
 
 class LogFile(File):
     """Convenience class that creates a log file object for logging purposes.
-    
+
     Attributes:
         log_file: Log filename.
-    
+
     Usage examples:
         >>> log = LogFile("file.log",False)
         >>> log
         "file.log"
 
-    Arguments:
+    Args:
         file: Log filename (need not exist at runtime).
         print_to_screen: If true, prints output to standard output (stdout) as well.
         format_log_str: If true, this formats the logging information with more detail.
@@ -30,6 +31,11 @@ class LogFile(File):
             * ``critical``
             * ``error``
             * ``warning``
+        exc_info: Adds exception information to the logging message.
+        stack_info: Adds stack information to the logging message.
+        stacklevel: If greater than 1, the corresponding number of stack
+            frames are skipped when computing the line number and function
+            name set in the ``LogRecord`` for the logging event.
     """
 
     def __init__(
@@ -39,15 +45,18 @@ class LogFile(File):
         format_log_str: bool = False,
         use_root_logger: bool = False,
         level: str = "info",
+        exc_info: bool = False,
+        stack_info: bool = False,
+        stacklevel: int = 1,
     ) -> None:
         """Initialization method for the LogFile class. Initiates logging and its associated methods (from the ``logging`` module).
-        
+
         Usage examples:
             >>> log = LogFile("file.log",False)
             >>> log
             "file.log"
-        
-        Arguments:
+
+        Args:
             file: Log filename (need not exist at runtime).
             print_to_screen: If true, prints output to standard output (stdout) as well.
             format_log_str: If true, this formats the logging information with more detail.
@@ -58,6 +67,11 @@ class LogFile(File):
                 * ``critical``
                 * ``error``
                 * ``warning``
+            exc_info: Adds exception information to the logging message.
+            stack_info: Adds stack information to the logging message.
+            stacklevel: If greater than 1, the corresponding number of stack
+                frames are skipped when computing the line number and function
+                name set in the ``LogRecord`` for the logging event.
         """
         self.log_file: str = log_file
         level: str = LogLevel(level.lower()).name
@@ -65,6 +79,13 @@ class LogFile(File):
         # Define logging
         self.logger = logging.getLogger(__name__)
         super(LogFile, self).__init__(self.log_file)
+
+        # Define logging parameters
+        self.params: Dict[str, Any] = {
+            "exc_info": bool(exc_info),
+            "stack_info": bool(stack_info),
+            "stacklevel": int(stacklevel),
+        }
 
         if format_log_str and (level == "debug"):
             FORMAT: str = "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"
@@ -115,35 +136,35 @@ class LogFile(File):
 
     def info(self, msg: str = "", use_header: bool = False) -> None:
         """Writes information to log file.
-        
+
         Usage examples:
             >>> log = LogFile("file.log")
             >>> log.info("<str>")
-        
-        Arguments:
+
+        Args:
             msg: String to be printed to log file.
             use_header: Give log message a section header.
         """
         if use_header:
-            self.logger.info(self._section_header(msg))
+            self.logger.info(self._section_header(msg), **self.params)
         else:
-            self.logger.info(msg)
+            self.logger.info(msg, **self.params)
 
     def debug(self, msg: str = "", use_header: bool = False) -> None:
         """Writes debug information to file.
-        
+
         Usage examples:
             >>> log = LogFile("file.log")
             >>> log.debug("<str>")
-        
-        Arguments:
+
+        Args:
             msg: String to be printed to log file.
             use_header: Give log message a section header.
         """
         if use_header:
-            self.logger.debug(self._section_header(msg))
+            self.logger.debug(self._section_header(msg), **self.params)
         else:
-            self.logger.debug(msg)
+            self.logger.debug(msg, **self.params)
 
     def critical(self, msg: str, use_header: bool = False) -> None:
         """Write critical messages/information to file.
@@ -152,55 +173,55 @@ class LogFile(File):
             >>> log = LogFile("file.log")
             >>> log.critical("<str>")
 
-        Arguments:
+        Args:
             msg: String to be printed to log file.
-            use_header: Give log message a section header. 
+            use_header: Give log message a section header.
         """
         if use_header:
-            self.logger.critical(self._section_header(msg))
+            self.logger.critical(self._section_header(msg), **self.params)
         else:
-            self.logger.critical(msg)
+            self.logger.critical(msg, **self.params)
 
     def error(self, msg: str = "", use_header: bool = False) -> None:
         """Writes error information to file.
-        
+
         Usage examples:
             >>> log = LogFile("file.log")
             >>> log.error("<str>")
-        
-        Arguments:
+
+        Args:
             msg: String to be printed to log file.
             use_header: Give log message a section header.
         """
         if use_header:
-            self.logger.error(self._section_header(msg))
+            self.logger.error(self._section_header(msg), **self.params)
         else:
-            self.logger.error(msg)
+            self.logger.error(msg, **self.params)
 
     def warning(self, msg: str = "", use_header: bool = False) -> None:
         """Writes warnings to file.
-        
+
         Usage examples:
             >>> log = LogFile("file.log")
             >>> log.warning("<str>")
-        
-        Arguments:
+
+        Args:
             msg: String to be printed to log file.
             use_header: Give log message a section header.
         """
         if use_header:
-            self.logger.warning(self._section_header(msg))
+            self.logger.warning(self._section_header(msg), **self.params)
         else:
-            self.logger.warning(msg)
+            self.logger.warning(msg, **self.params)
 
     def log(self, log_cmd: str = "", use_header: bool = False) -> None:
         """Log function for logging commands and messages to some log file.
-        
+
         Usage examples:
             >>> log = LogFile("file.log")
             >>> log.log("<str>")
-            
-        Arguments:
+
+        Args:
             log_cmd: Message to be written to log file.
             use_header: Give log message a section header.
         """
@@ -220,7 +241,7 @@ class LogFile(File):
             Mon Aug 23 13:34:21 2021: INFO: This is a test
             --------------------------------------------------------------------------------------
 
-        Arguments:
+        Args:
             msg: Message string to have section header.
 
         Returns:
