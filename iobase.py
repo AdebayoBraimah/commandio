@@ -41,7 +41,7 @@ class IOBaseObj(ABC):
         ...         return super().copy(dst)
         ...
 
-    Arguments:
+    Args:
         src: Input string that represents a file or directory.
     """
 
@@ -89,7 +89,7 @@ class IOBaseObj(ABC):
             >>> file.relpath('new_dir/file2.txt')
             "../file_namt.txt"
 
-        Arguments:
+        Args:
             dst: Destination file path.
 
         Returns:
@@ -129,7 +129,7 @@ class IOBaseObj(ABC):
             >>> file.abspath()
             "abspath/to/file_namt.txt"
 
-        Arguments:
+        Args:
             follow_sym_links: If set to true, the absolute path of the
                 symlinked file is returned.
 
@@ -171,7 +171,7 @@ class IOBaseObj(ABC):
             >>> file.sym_link("file2.txt")
             "file2.txt"
 
-        Arguments:
+        Args:
             dst: Destination file path.
             relative: Symbolically link the file or directory using a relative
                 path.
@@ -233,7 +233,7 @@ class IOBaseObj(ABC):
             >>> file.copy("file2.txt")
             "/abs/path/to/file2.txt"
 
-        Arguments:
+        Args:
             dst: Destination file path.
 
         Return:
@@ -331,7 +331,7 @@ class IOBaseObj(ABC):
             >>> file.move("file2.txt")
             "file2.txt"
 
-        Arguments:
+        Args:
             dst: Destination file path.
 
         Returns:
@@ -344,8 +344,7 @@ class IOBaseObj(ABC):
             return os.path.abspath(move(src=src, dst=dst, copy_function=copytree))
 
     def join(self, *args) -> str:
-        """Joins directory or dirname of a file with additional pathname
-        components.
+        """Joins directory or dirname of a file with additional pathname components.
 
         Usage example:
             >>> # Initialize child class and inherit
@@ -369,7 +368,7 @@ class IOBaseObj(ABC):
             >>> file.join("file2.txt")
             "/abs/path/to/dirname/file1/file2.txt"
 
-        Arguments:
+        Args:
             *args: Variable length argument list.
 
         Returns:
