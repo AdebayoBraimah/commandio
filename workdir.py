@@ -150,28 +150,3 @@ class WorkDir(IOBaseObj):
             String that corresponds to the copied work.
         """
         return super().copy(dst)
-
-    def exists(self) -> bool:
-        """Tests if a directory exists.
-
-        Usage example:
-            >>> # Using class object as context manager
-            >>> with WorkDir("/path/to/working_directory") as work_dir:
-            ...     print(work_dir.exists())
-            ...
-            False
-            >>>
-            >>> # or
-            >>>
-            >>> work = WorkDir("/path/to/working_directory")
-            >>> work.exists()
-            False
-
-        Returns:
-            Returns ``True`` if the directory exists and ``False`` otherwise.
-        """
-        src: str = self.abspath()
-        if os.path.isdir(src) and os.path.exists(src):
-            return True
-        else:
-            return False

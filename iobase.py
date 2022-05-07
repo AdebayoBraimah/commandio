@@ -89,7 +89,7 @@ class IOBaseObj(ABC):
             "../file_namt.txt"
 
         Args:
-            dst: Destination file path.
+            dst: Destination file path relative to ``src`` file path.
 
         Returns:
             String that reprents the relative file path of the object from the
@@ -97,7 +97,9 @@ class IOBaseObj(ABC):
         """
         if os.path.isfile(self.src):
             return os.path.join(
-                os.path.relpath(os.path.dirname(self.abspath()), os.path.dirname(dst)),
+                os.path.relpath(
+                    os.path.dirname(self.abspath()), os.path.dirname(dst)
+                ),
                 os.path.basename(self.src),
             )
         else:
@@ -144,8 +146,10 @@ class IOBaseObj(ABC):
     def sym_link(self, dst: str, relative: bool = False) -> str:
         """Creates a symbolic link with an absolute or relative file path.
 
-        NOTE: If a directory is the used as the input object, then the
-            linked destination is returned.
+        NOTE: 
+            * If a directory is used as the input object, then the linked 
+                destination is returned.
+            * This **WILL NOT WORK** on Windows platforms
 
         Usage example:
             >>> # Initialize child class and inherit
@@ -208,6 +212,11 @@ class IOBaseObj(ABC):
     @abstractmethod
     def copy(self, dst: str) -> str:
         """Copies file or recursively copies a directory to some destination.
+
+        This method is an abstract method **AND MUST** be overwritten when 
+        the parent class ``IOBaseObj`` is being inherited from. This allows
+        for the definition of different types of copy methods (e.g. deep vs 
+        shallow copies of a file, or the copying of file metadata.)
 
         Usage example:
             >>> # Initialize child class and inherit
@@ -340,7 +349,9 @@ class IOBaseObj(ABC):
         if os.path.isfile(src):
             return os.path.abspath(move(src=src, dst=dst, copy_function=copy))
         elif os.path.isdir(src):
-            return os.path.abspath(move(src=src, dst=dst, copy_function=copytree))
+            return os.path.abspath(
+                move(src=src, dst=dst, copy_function=copytree)
+            )
 
     def join(self, *args) -> str:
         """Joins directory or dirname of a file with additional pathname components.
@@ -379,3 +390,39 @@ class IOBaseObj(ABC):
             return os.path.join(src, *args)
         elif os.path.isdir(src):
             return os.path.join(src, *args)
+
+    def exists(self) -> bool:
+        """Tests if a file or directory exists.
+
+        Usage example:
+            >>> # Initialize child class and inherit
+            >>> #   from IOBaseObj ABC
+            >>> class SomeFileClass(IOBaseObj):
+            ...     def __init__(self, src: str):
+            ...         super().__init__(src)
+            ...
+            ...     # Overwrite IOBaseObj ABC method
+            ...     def copy(self, dst: str):
+            ...         return super().copy(dst)
+            ...
+            >>> # Using class object as context manager
+            >>> with SomeFileClass("file_name.txt") as file:
+            ...     print(file.exists())
+            ...
+            False
+            >>>
+            >>> # OR
+            >>> file = SomeFileClass("file_name.txt")
+            >>> file.exists()
+            False
+
+        Returns:
+            Returns ``True`` if the file or directory exists and ``False`` otherwise.
+        """
+        src: str = self.abspath()
+        if os.path.isdir(src) and os.path.exists(src):
+            return True
+        elif os.path.isfile(src) and os.path.exists(src):
+            return True
+        else:
+            return False
