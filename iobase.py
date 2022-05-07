@@ -12,8 +12,7 @@ from abc import ABC, abstractmethod
 
 
 class IOBaseObj(ABC):
-    """IO abstract base class (``ABC``) object that encapsulates methods
-    related to file and directory manipulation.
+    """IO abstract base class (``ABC``) object that encapsulates methods related to file and directory manipulation.
 
     This ``ABC`` cannot be directly instantiated, and **MUST** used by a
     child/sub-class that inherits from this class. Additionally, the ``copy`
