@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Enums module for ``xfm_tck``.
+"""Enums module for the ``commandio`` package.
 """
 from enum import Enum, unique
 
