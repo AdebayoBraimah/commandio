@@ -76,7 +76,9 @@ class File(IOBaseObj):
             _, self.ext = os.path.splitext(self.src)
 
         if assert_exists:
-            assert os.path.exists(self.src), f"Input file {self.src} does not exist."
+            assert os.path.exists(
+                self.src
+            ), f"Input file {self.src} does not exist."
 
     def copy(self, dst: str) -> str:
         """Copies file to some source destination.
