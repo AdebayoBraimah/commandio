@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-"""Working directory module.
+"""Working directory module for the ``commandio`` package.
 """
 import os
 import shutil
 
-from xfm_tck.utils.iobase import IOBaseObj
+from iobase import IOBaseObj
 
 
 class WorkDir(IOBaseObj):
@@ -23,7 +23,7 @@ class WorkDir(IOBaseObj):
             ...
             >>> # or
             >>>
-            >>> work = WorkDir(src="/path/to/working_directory", 
+            >>> work = WorkDir(src="/path/to/working_directory",
             ...                use_cwd=False)
             >>> work.mkdir()
             >>> work
@@ -49,13 +49,13 @@ class WorkDir(IOBaseObj):
             ...
             >>> # or
             >>>
-            >>> work = WorkDir(src="/path/to/working_directory", 
+            >>> work = WorkDir(src="/path/to/working_directory",
             ...                use_cwd=False)
             >>> work.mkdir()
             >>> work
             "/path/to/working_directory"
             >>> work.rmdir(rm_parent=False)
-        
+
         Arguments:
             src: Working directory name/path. This directory need not exist at runtime.
             use_cwd: Use current working directory as the parent directory.
@@ -87,7 +87,7 @@ class WorkDir(IOBaseObj):
             ...
             >>> # or
             >>>
-            >>> work = WorkDir(src="/path/to/working_directory", 
+            >>> work = WorkDir(src="/path/to/working_directory",
             ...                use_cwd=False)
             >>> work.mkdir()
             >>> work
@@ -111,7 +111,7 @@ class WorkDir(IOBaseObj):
             ...
             >>> # or
             >>>
-            >>> work = WorkDir(src="/path/to/working_directory", 
+            >>> work = WorkDir(src="/path/to/working_directory",
             ...                use_cwd=False)
             >>> work.mkdir()
             >>> work.rmdir(rm_parent=False)
@@ -138,7 +138,7 @@ class WorkDir(IOBaseObj):
             "/path/to/new/directory"
             >>>
             >>> # or
-            >>> 
+            >>>
             >>> work = WorkDir("/path/to/working_directory")
             >>> work.copy("/path/to/new/directory")
             "/path/to/new/directory"
@@ -162,7 +162,7 @@ class WorkDir(IOBaseObj):
             False
             >>>
             >>> # or
-            >>> 
+            >>>
             >>> work = WorkDir("/path/to/working_directory")
             >>> work.exists()
             False

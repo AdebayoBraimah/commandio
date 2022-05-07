@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""File IO methods, functions and operations.
+"""File IO methods, functions and operations for the ``commandio`` package.
 """
 import os
 from typing import Optional, Tuple
