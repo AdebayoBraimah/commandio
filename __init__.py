@@ -15,12 +15,19 @@
 logging, and running commands on the command line.
 """
 import os
+import sys
+import pathlib
+
+# Add package to PYTHONPATH
+_pkg_path: str = os.path.join(
+    str(pathlib.Path(os.path.abspath(__file__)).parents[0])
+)
+sys.path.append(_pkg_path)
 
 name: str = "commandio"
 
-
 # Define constants
-_MISCDIR: str = os.path.abspath("misc")
+_MISCDIR: str = os.path.abspath(os.path.join(_pkg_path, "misc"))
 _LICENSE: str = "GNU GENERAL PUBLIC LICENSE v3"
 
 _version_file: str = os.path.abspath(os.path.join(_MISCDIR, "version.txt"))
@@ -34,6 +41,7 @@ __author__ = "Adebayo Braimah"
 __credits__ = ["Adebayo Braimah"]
 __license__ = _LICENSE
 __version__ = _version
+__package__ = __name__
 __maintainer__ = "Adebayo Braimah"
 __email__ = "adebayo.braimah@gmail.com"
 __status__ = "Development"
