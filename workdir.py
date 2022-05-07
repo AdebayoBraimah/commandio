@@ -30,7 +30,7 @@ class WorkDir(IOBaseObj):
             "/path/to/working_directory"
             >>> work.rmdir(rm_parent=False)
 
-    Arguments:
+    Args:
         src: Working directory name/path. This directory need not exist at runtime.
         use_cwd: Use current working directory as the parent directory.
     """
@@ -56,7 +56,7 @@ class WorkDir(IOBaseObj):
             "/path/to/working_directory"
             >>> work.rmdir(rm_parent=False)
 
-        Arguments:
+        Args:
             src: Working directory name/path. This directory need not exist at runtime.
             use_cwd: Use current working directory as the parent directory.
         """
@@ -116,7 +116,7 @@ class WorkDir(IOBaseObj):
             >>> work.mkdir()
             >>> work.rmdir(rm_parent=False)
 
-        Arguments:
+        Args:
             rm_parent: Removes parent directory as well.
         """
         if rm_parent and os.path.exists(self.parent_dir):
@@ -143,7 +143,7 @@ class WorkDir(IOBaseObj):
             >>> work.copy("/path/to/new/directory")
             "/path/to/new/directory"
 
-        Arguments:
+        Args:
             dst: Destination file path.
 
         Returns:

@@ -7,11 +7,10 @@ import shlex
 import shutil
 
 from dataclasses import dataclass
-
 from typing import Dict, List, Optional, Tuple, Union
 
-from xfm_tck.utils.fileio import File
-from xfm_tck.utils.logutil import LogFile
+from fileio import File
+from logutil import LogFile
 
 
 class DependencyError(Exception):
@@ -43,7 +42,7 @@ class Command:
         (0, None, None)
         Hi! I have arrived! # Output is directed to the shell
 
-    Arguments:
+    Args:
         command: Command to be used.
         env: Dictionary of environment variables to add to subshell.
     """
@@ -61,11 +60,11 @@ class Command:
             >>> figlet = Command("figlet python")
             >>> figlet.check_dependency()   # Raises exception if not in system path
 
-        Returns:
-            Returns True if dependency is met, raises exception otherwise.
-
         Raises:
             DependencyError: Dependency error exception is raised if the dependency is not met.
+
+        Returns:
+            Returns True if dependency is met, raises exception otherwise.
         """
         _tmp: List[str] = shlex.split(self.command)
         _cmd: str = _tmp[0]
@@ -100,7 +99,7 @@ class Command:
             >>> echo.run()
             (0, '', '')
 
-        Arguments:
+        Args:
             log: ``LogFile`` object or ``str``.
             debug: Sets logging function verbosity to DEBUG level.
             dryrun: Dry run -- does not run task. Command is recorded to the log file.
@@ -108,14 +107,15 @@ class Command:
             shell: Use shell to execute command.
             raise_exec: If true, raises ``RuntimeError`` exception if the return code of the command is not 0 - otherwise no exception is raised with non-0 return codes.
 
+        Raises:
+            RuntimeError: Exception that is raised if the return code of the command is not 0 and the ``raise_exc`` argument is set to ``True``.
+
         Returns:
             * Return code for command execution (``int``).
             * Standard output writtent to file should the 'stdout' option be used (``str``).
             * Standard error writtent to file should the 'stdout' option be used (``str``).
-
-        Raises:
-            RuntimeError: Exception that is raised if the return code of the command is not 0 and the ``raise_exc`` argument is set to ``True``.
         """
+
         cmd: List[str] = shlex.split(s=self.command, comments=False, posix=True)
 
         if type(log) is str:
@@ -170,4 +170,4 @@ class Command:
                     f"\nFailed:\t{self.command} with return code {p.returncode}\n"
                 )
 
-        return (p.returncode, stdout, stderr)
+        return p.returncode, stdout, stderr
