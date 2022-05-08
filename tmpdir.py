@@ -17,10 +17,12 @@ class TmpDir(WorkDir):
         parent_dir: Parent directory of the specified temproary directory.
 
     Usage example:
-            >>> with TmpDir("/path/to/temporary_directory",False) as tmp_dir:
-            ...     tmp_dir.mkdir()
+           >>> with TmpDir("/path/to/temporary_directory",False) as tmp_dir:
+            ...     cwd = os.getcwd()
+            ...     print("My temporary directory")
+            ...     os.chdir(tmp_dir.src)
             ...     # do more stuff
-            ...     tmp_dir.rmdir(rm_parent=False)
+            ...     os.chdir(cwd)
             ...
             >>> # or
             >>>
@@ -32,16 +34,21 @@ class TmpDir(WorkDir):
     Args:
         src: Temporary parent directory name/path.
         use_cwd: Use current working directory as working direcory.
+        cleanup: Perform clean-up of the temporary directory.
     """
 
-    def __init__(self, src: str, use_cwd: bool = False) -> None:
+    def __init__(
+        self, src: str, use_cwd: bool = False, cleanup: bool = True
+    ) -> None:
         """Initialization method for the TmpDir child class.
 
         Usage example:
             >>> with TmpDir("/path/to/temporary_directory",False) as tmp_dir:
-            ...     tmp_dir.mkdir()
+            ...     cwd = os.getcwd()
+            ...     print("My temporary directory")
+            ...     os.chdir(tmp_dir.src)
             ...     # do more stuff
-            ...     tmp_dir.rmdir(rm_parent=False)
+            ...     os.chdir(cwd)
             ...
             >>> # or
             >>> tmp_dir = TmpDir("/path/to/temporary_directory")
@@ -51,10 +58,18 @@ class TmpDir(WorkDir):
 
         Args:
             src: Temporary parent directory name/path.
-            use_cwd: Use current working directory as working direcory.
+            use_cwd: Use current working directory as working directory.
+            cleanup: Perform clean-up of the temporary directory.
         """
         _n: int = 10000
-        self.src: str = os.path.join(src, "tmp_dir_" + str(random.randint(0, _n)))
+        self.src: str = os.path.join(
+            src, "tmp_dir_" + str(random.randint(0, _n))
+        )
+
+        if cleanup:
+            self.cleanup: bool = True
+        else:
+            self.cleanup: bool = False
 
         if use_cwd:
             _cwd: str = os.getcwd()
@@ -63,5 +78,6 @@ class TmpDir(WorkDir):
 
     def __exit__(self, exc_type, exc_val, traceback):
         """Context manager exit method for ``TmpDir`` class."""
-        self.rmdir()
+        if self.cleanup:
+            self.rmdir()
         return super().__exit__(exc_type, exc_val, traceback)
