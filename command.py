@@ -50,7 +50,7 @@ class Command:
     command: str
     env: Dict[str, str] = None
 
-    def check_dependency(self) -> bool:
+    def check_dependency(self, raise_exc: bool = True) -> bool:
         """Checks the dependency of some command line executable. Should the
         dependency not be met, then an exception is raised. Check the
         system path should problems arise and ensure that the executable
@@ -58,22 +58,31 @@ class Command:
 
         Usage example:
             >>> figlet = Command("figlet python")
-            >>> figlet.check_dependency()   # Raises exception if not in system path
+            >>> figlet.check_dependency() # Raises exception if not in system path
+        
+        Args:
+            raise_exc: If true, an exception is raised if the dependency is 
+                not in the system path. Defaults to False.
 
         Raises:
-            DependencyError: Dependency error exception is raised if the dependency is not met.
+            DependencyError: Dependency error exception is raised if the 
+                dependency is not met. Defaults to 
 
         Returns:
-            Returns True if dependency is met, raises exception otherwise.
+            Returns True if dependency is met, OR raises exception (if 
+                ``raise_exc`` is True)/ returns False otherwise.
         """
         _tmp: List[str] = shlex.split(self.command)
         _cmd: str = _tmp[0]
 
-        if not shutil.which(_cmd):
+        if not shutil.which(_cmd) and raise_exc:
             raise DependencyError(
                 f"Command executable not found in system path: {_cmd}"
             )
-        return True
+        elif not shutil.which(_cmd):
+            return False
+        else:
+            return True
 
     def run(
         self,
@@ -116,7 +125,9 @@ class Command:
             * Standard error writtent to file should the 'stdout' option be used (``str``).
         """
 
-        cmd: List[str] = shlex.split(s=self.command, comments=False, posix=True)
+        cmd: List[str] = shlex.split(
+            s=self.command, comments=False, posix=True
+        )
 
         if type(log) is str:
             log: LogFile = LogFile(log_file=log)
@@ -164,7 +175,9 @@ class Command:
 
         if p.returncode != 0:
             if log:
-                log.error(f"Failed:\t{self.command} with return code {p.returncode}")
+                log.error(
+                    f"Failed:\t{self.command} with return code {p.returncode}"
+                )
             if raise_exc:
                 raise RuntimeError(
                     f"\nFailed:\t{self.command} with return code {p.returncode}\n"
