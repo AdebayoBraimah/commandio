@@ -1,12 +1,9 @@
 """Tests for the ``workdir`` module in the ``commandio`` package.
 """
-import pytest
-
 import os
 import sys
 import pathlib
 
-from sympy import use
 
 # Add package/module to PYTHONPATH
 _pkg_path: str = os.path.join(
@@ -95,4 +92,4 @@ def test_abspath():
 # def test_dirname():
 # def test_move():
 # def test_join():
-# def test_exitst():
+# def test_exists():
