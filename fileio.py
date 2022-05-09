@@ -2,7 +2,7 @@
 """File IO methods, functions and operations for the ``commandio`` package.
 """
 import os
-from typing import Optional, Tuple
+from typing import List, Optional, Tuple
 
 from iobase import IOBaseObj
 
@@ -247,3 +247,22 @@ class File(IOBaseObj):
             >>> file.remove()
         """
         return os.remove(self.abspath())
+
+    def read(self, remove_newline: bool = False) -> List[str]:
+        """Reads input file text.
+
+        Usage example:
+            >>>
+
+        Args:
+            remove_newline: Strip newline characters. Defaults to False.
+
+        Returns:
+            List of strings, with each element corresponding to a newline in 
+                the file.
+        """
+        with open(self.abspath()) as f:
+            text_lines: List[str] = f.readlines()
+            if remove_newline:
+                text_lines: List[str] = [x.strip("\n") for x in text_lines]
+        return text_lines
