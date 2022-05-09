@@ -11,8 +11,11 @@ from tmpfile import TmpFile
 
 
 # Globlally define (temporary) log file object
+# NOTE: Not the best practice in this scenario, but
+#   it gets the job done.
 with TmpFile(tmp_dir=os.getcwd(), ext=".log") as tmpf:
     log: LogFile = LogFile(log_file=tmpf.src)
+    tmpf.remove()
 
 
 def timeops(log: Optional[LogFile] = None) -> callable:
