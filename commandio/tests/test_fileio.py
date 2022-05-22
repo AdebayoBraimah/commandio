@@ -19,7 +19,7 @@ from fileio import File
 def test_file_assert_exist():
     with pytest.raises(AssertionError):
         with File(src='test.txt', assert_exists=True) as f:
-            f.basename
+            f.basename()
 
 
 def test_file_create():
@@ -46,3 +46,22 @@ def test_file_copy():
             f.remove()
             f2.remove()
 
+
+def test_file_parts():
+    with File(src='test.txt') as f:
+        f.touch()
+        fpath, file, ext = f.file_parts()
+        dname: str = os.path.dirname(f.abspath())
+
+        assert fpath == dname
+        assert file == 'test'
+        assert ext == '.txt'
+
+        f.remove()
+
+
+def test_rm_ext():
+    with File(src='test.txt') as f:
+        f.touch()
+        assert f.rm_ext() == 'test'
+        f.remove()

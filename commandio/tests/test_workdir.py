@@ -88,8 +88,18 @@ def test_abspath():
             assert wd1.exists() == False
 
 
-# def test_basename():
-# def test_dirname():
+def test_basename():
+    with WorkDir(src="test.1", use_cwd=True) as wd1:
+        assert wd1.basename() == 'test.1'
+        wd1.rmdir()
+
+
+def test_dirname():
+    with WorkDir(src="test.1", use_cwd=True) as wd1:
+        assert wd1.dirname() == os.path.dirname(wd1.abspath())
+        wd1.rmdir()
+
+
 # def test_move():
 # def test_join():
 # def test_exists():
