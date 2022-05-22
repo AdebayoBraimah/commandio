@@ -20,8 +20,9 @@ _pkg_path: str = str(pathlib.Path(os.path.abspath(__file__)).parents[2])
 sys.path.insert(0, _pkg_path)
 sys.path.append(_pkg_path)
 
-# from ....commandio import __author__, __version__
-from __init__ import __author__, __version__
+from commandio import __author__, __version__
+
+# from __init__ import __author__, __version__
 
 # -- Project information -----------------------------------------------------
 
