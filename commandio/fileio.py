@@ -158,7 +158,7 @@ class File(IOBaseObj):
             ext_len = len(self.ext)
             return self.src[:-(ext_len)]
         else:
-            return self.src[:-(4)]
+            return self.src
 
     def write(self, txt: str = "") -> None:
         """Writes/appends text to file.
