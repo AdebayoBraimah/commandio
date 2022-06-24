@@ -1,14 +1,6 @@
 commandio package
 =================
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
-   commandio.tests
-
 Submodules
 ----------
 
