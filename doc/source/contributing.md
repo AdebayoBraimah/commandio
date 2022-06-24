@@ -19,18 +19,18 @@ Commit messages
 
 To aid readability, all commit messages should be prefixed with one or more of
 the following labels (this convention has been inherited from [``nibabel``](https://github.com/nipy/nibabel):
-
-  * *BF*  : bug fix
-  * *RF*  : refactoring
-  * *ENH*:  enhancement/new feature
-  * *BW*  : addresses backward-compatibility
-  * *OPT* : optimization
-  * *BK*  : breaks something and/or tests fail
-  * *PL*  : making pylint happier
-  * *DOC* : for all kinds of documentation related commits
-  * *TEST*: for adding or changing tests
-  * *MNT* : for administrative/maintenance changes
-  * *CI*  : for continuous-integration changes
+               
+  * **BF**  : bug fix              
+  * **RF**  : refactoring
+  * **ENH**:  enhancement/new feature
+  * **BW**  : addresses backward-compatibility
+  * **OPT** : optimization
+  * **BK**  : breaks something and/or tests fail
+  * **PL**  : making pylint happier
+  * **DOC** : for all kinds of documentation related commits
+  * **TEST**: for adding or changing tests
+  * **MNT** : for administrative/maintenance changes
+  * **CI**  : for continuous-integration changes
 
 
 Version number
@@ -43,13 +43,13 @@ numbers::
 
     major.minor.patch
 
-- The ``patch`` number is incremented on bugfixes and minor
+* The ``patch`` number is incremented on bugfixes and minor
   (backwards-compatible) changes.
 
-- The ``minor`` number is incremented on feature additions and/or
+* The ``minor`` number is incremented on feature additions and/or
   backwards-compatible changes.
 
-- The ``major`` number is incremented on major feature additions, and
+* The ``major`` number is incremented on major feature additions, and
   backwards-incompatible changes.
 
 
@@ -124,16 +124,16 @@ Testing
 Unit and integration tests are currently run with ``py.test`` and
 ``coverage`` (**However, this is not yet implemented**).
 
-- Aim for 100% code coverage.
-- Tests must pass on python 3.5, 3.6, and 3.7.
+* Aim for 100% code coverage.
+* Tests must pass on python v3.5, v3.6, and v3.7.
 
 
 Coding conventions
 ------------------
 
 
-- Clean, readable code is good
-- Clear and accurate documentation is good
-- Document all modules, functions, classes, and methods using
+* Clean, readable code is good
+* Clear and accurate documentation is good
+* Document all modules, functions, classes, and methods using
   [``ReStructuredText``](http://www.sphinx-doc.org/en/stable/rest.html).
 
