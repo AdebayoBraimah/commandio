@@ -179,9 +179,9 @@ class File(IOBaseObj):
         Args:
             txt: Text/string to be written to file.
         """
-        with open(self.src, mode="a", encoding="utf-8") as tmp_file:
-            tmp_file.write(txt)
-            tmp_file.close()
+        with open(self.src, mode="a", encoding="utf-8") as file:
+            file.write(txt)
+            file.close()
         return None
 
     def file_parts(self, ext: str = "") -> Tuple[str, str, str]:
@@ -230,7 +230,7 @@ class File(IOBaseObj):
         else:
             [filename, ext] = os.path.splitext(_filename)
 
-        return (path, filename, ext)
+        return path, filename, ext
 
     def remove(self) -> None:
         """Removes file.
