@@ -6,9 +6,17 @@
 Welcome to commandio's documentation!
 =====================================
 
+The ``commandio`` python package is intended to be a convenience suite of tools
+for running and logging UNIX commands on the command line.
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   
+   installation
+   contributing.md
+   modules
+
 
 
 
