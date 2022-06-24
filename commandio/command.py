@@ -61,12 +61,10 @@ class Command:
             >>> figlet.check_dependency() # Raises exception if not in system path
         
         Args:
-            raise_exc: If true, an exception is raised if the dependency is 
-                not in the system path. Defaults to False.
+            raise_exc: If true, an exception is raised if the dependency is not in the system path. Defaults to False.
 
         Raises:
-            DependencyError: Dependency error exception is raised if the 
-                dependency is not met. Defaults to 
+            DependencyError: Dependency error exception is raised if the dependency is not met. Defaults to 
 
         Returns:
             Returns True if dependency is met, OR raises exception (if ``raise_exc`` is True)/ returns False otherwise.
