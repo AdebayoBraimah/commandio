@@ -27,7 +27,7 @@ class Command:
     The input argument is a command (string).
 
     NOTE:
-        The specified command used must be in system path.
+        The specified command used must be in the system path variable.
 
     Attributes:
         command: Command to be executed/run on the command line.
@@ -69,8 +69,7 @@ class Command:
                 dependency is not met. Defaults to 
 
         Returns:
-            Returns True if dependency is met, OR raises exception (if 
-                ``raise_exc`` is True)/ returns False otherwise.
+            Returns True if dependency is met, OR raises exception (if ``raise_exc`` is True)/ returns False otherwise.
         """
         _tmp: List[str] = shlex.split(self.command)
         _cmd: str = _tmp[0]
@@ -93,11 +92,13 @@ class Command:
         shell: bool = False,
         raise_exc: bool = True,
     ) -> Tuple[int, Union[str, None], Union[str, None]]:
-        """Uses python's built-in ``subprocess`` module to execute (run) a command from a command.
+        """Uses python's built-in ``subprocess`` module to execute (run) a command from the command line.
+        
         The standard output and error can optionally be written to file.
 
         NOTE:
             * The contents of the ``stdout`` output file will be empty if ``shell`` is set to ``True``.
+            * ``shell`` should remain ``False`` as setting it to ``True`` exposes risks for the injection of malicious code.
 
         Usage example:
             >>> echo = Command("echo 'Hi! I have arrived!'")
