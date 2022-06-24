@@ -32,6 +32,10 @@ Should one wish to use this package in a python project, and do not wish to inst
     1. It assumes that the project is also a git repository.
     2. The import path of ``commandio``'s modules will be slightly different if not setup from ``pip``.
 
-.. note:: 
-    
-    This package only uses python built-in modules and packages and thus has no external dependencies.
+
+.. caution:: 
+
+    Although this package is installable on Windows platforms, the pairity of ``commandio``'s utilities
+    is not one-to-one in comparision to UNIX platforms.
+
+    Use this package with caution on Windows platforms.

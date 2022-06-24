@@ -14,6 +14,7 @@ for running and logging UNIX commands on the command line.
    :caption: Contents:
    
    installation
+   quickstart
    contributing.md
    modules
 
