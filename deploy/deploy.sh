@@ -5,13 +5,13 @@
 # DESCRIPTION                         #
 #######################################
 # 
-# Deploys python package to PyPI.
+# Locally deploys python package to PyPI. 
 
 #######################################
 # NOTES                               #
 #######################################
 # 
-# Commands for deploying a package to PyPI
+# Commands for deploying a package to PyPI.
 #
 # Markdown badges
 #   * https://github.com/Naereen/badges
