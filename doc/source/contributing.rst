@@ -1,8 +1,9 @@
-# Contributing to ``commandio``
------------------------------------
+Contributing to ``commandio``
+===============================
 
-> This document is adapted from [https://git.fmrib.ox.ac.uk/fsl/fslpy/-/blob/master/doc/contributing.rst](https://git.fmrib.ox.ac.uk/fsl/fslpy/-/blob/master/doc/contributing.rst)        
-> Created by Paul McCarthy
+This document is adapted from `https://git.fmrib.ox.ac.uk/fsl/fslpy/-/blob/master/doc/contributing.rst <https://git.fmrib.ox.ac.uk/fsl/fslpy/-/blob/master/doc/contributing.rst>`_        
+
+Created by Paul McCarthy
 
 **NOTE**: This document is a work in progress.
 
@@ -18,7 +19,7 @@ Commit messages
 
 
 To aid readability, all commit messages should be prefixed with one or more of
-the following labels (this convention has been inherited from [``nibabel``](https://github.com/nipy/nibabel):
+the following labels (this convention has been inherited from `nibabel <https://github.com/nipy/nibabel>`_:
                
   * **BF**  : bug fix              
   * **RF**  : refactoring
@@ -37,19 +38,20 @@ Version number
 --------------
 
 
-The ``commandio`` version number roughly follows [``semantic versioning``](http://semver.org/) rules, so that dependant projects are able to perform
+The ``commandio`` version number roughly follows `semantic versioning <http://semver.org/>`_ rules, 
+so that dependant projects are able to perform
 compatibility testing.  The full version number string consists of three
 numbers::
 
-    major.minor.patch
+      major.minor.patch
 
-* The ``patch`` number is incremented on bugfixes and minor
+- The ``patch`` number is incremented on bugfixes and minor
   (backwards-compatible) changes.
 
-* The ``minor`` number is incremented on feature additions and/or
+- The ``minor`` number is incremented on feature additions and/or
   backwards-compatible changes.
 
-* The ``major`` number is incremented on major feature additions, and
+- The ``major`` number is incremented on major feature additions, and
   backwards-incompatible changes.
 
 
@@ -81,7 +83,8 @@ example, the first release off the ``v1.0`` branch would be tagged with
 ``1.0.1``, ``1.0.2``, etc.
 
 
-### Major/minor releases
+Major/minor releases
+^^^^^^^^^^^^^^^^^^^^^^
 
 
 Follow this process for major and minor releases. Steps 1 and 2 should be
@@ -101,7 +104,8 @@ request onto the relevant minor branch.
 5. Tag the new release on the minor release branch.
 
 
-### Bugfix/patch releases
+Bugfix/patch releases
+^^^^^^^^^^^^^^^^^^^^^^
 
 
 Follow this process for patch releases. Step 1 should be performed via
@@ -124,16 +128,16 @@ Testing
 Unit and integration tests are currently run with ``py.test`` and
 ``coverage`` (**However, this is not yet implemented**).
 
-* Aim for 100% code coverage.
-* Tests must pass on python v3.5, v3.6, and v3.7.
+- Aim for 100% code coverage.
+- Tests must pass on python v3.5, v3.6, and v3.7.
 
 
 Coding conventions
 ------------------
 
 
-* Clean, readable code is good
-* Clear and accurate documentation is good
-* Document all modules, functions, classes, and methods using
-  [``ReStructuredText``](http://www.sphinx-doc.org/en/stable/rest.html).
+- Clean, readable code is good
+- Clear and accurate documentation is good
+- Document all modules, functions, classes, and methods using
+  `ReStructuredText <http://www.sphinx-doc.org/en/stable/rest.html>`_.
 
