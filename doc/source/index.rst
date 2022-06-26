@@ -15,7 +15,7 @@ for running and logging UNIX commands on the command line.
    
    installation
    quickstart
-   contributing.md
+   contributing
    modules
 
 
