@@ -3,7 +3,7 @@ Quickstart
 
 .. note:: 
 
-    Type hinting is used in all examples to increase readability.
+    Type hinting is used in all examples to increase python code readability.
 
 UNIX commands in python
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
