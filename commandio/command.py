@@ -124,6 +124,7 @@ class Command:
             * Standard error writtent to file should the 'stdout' option be used (``str``).
         """
 
+        # TODO: system/platform check if POSIX should be set to FALSE on windows
         cmd: List[str] = shlex.split(
             s=self.command, comments=False, posix=True
         )
