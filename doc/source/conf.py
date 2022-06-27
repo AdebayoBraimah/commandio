@@ -43,30 +43,12 @@ extensions: List[str] = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
     'sphinxarg.ext',
-    "myst_parser",
     'sphinx_autodoc_typehints',
 ]
 
 source_suffix = {
     ".rst": "restructuredtext",
-    ".md": "markdown",
 }
-
-myst_enable_extensions = [
-    "amsmath",
-    "colon_fence",
-    "deflist",
-    "dollarmath",
-    "fieldlist",
-    "html_admonition",
-    "html_image",
-    "linkify",
-    "replacements",
-    "smartquotes",
-    "strikethrough",
-    "substitution",
-    "tasklist",
-]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
