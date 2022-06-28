@@ -237,7 +237,7 @@ fi
 
 if [[ ${test_dist} = true ]]; then
   echo_blue "Performing test upload."
-  twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+  twine upload --repository-url https://test.pypi.org/legacy/ dist/* # --verbose
 else
   echo_blue "Performing upload to PyPI."
   twine upload dist/*
@@ -255,7 +255,7 @@ fi
 # 
 # # # Create testing environment
 # 
-# conda create --name test1 python=3 
+# conda create --yes --name test1 python=3 
 # conda activate test1
 # 
 # # # Upgrade pip if needed
@@ -263,4 +263,5 @@ fi
 # pip install --upgrade setuptools
 # 
 # # # Remove testing env
-# conda remove --name test1 --all
+# conda deactivate
+# conda remove --yes --name test1 --all
