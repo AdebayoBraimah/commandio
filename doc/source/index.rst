@@ -16,9 +16,9 @@ handling.
    
    installation
    quickstart
-   contributing
    modules
    history
+   contributing
 
 
 
