@@ -5,7 +5,7 @@ import os
 import random
 from typing import Optional
 
-from fileio import File
+from commandio.fileio import File
 
 
 class TmpFile(File):

@@ -4,7 +4,7 @@
 import os
 import random
 
-from workdir import WorkDir
+from commandio.workdir import WorkDir
 
 
 class TmpDir(WorkDir):

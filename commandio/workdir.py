@@ -4,7 +4,7 @@
 import os
 import shutil
 
-from iobase import IOBaseObj
+from commandio.iobase import IOBaseObj
 
 
 class WorkDir(IOBaseObj):

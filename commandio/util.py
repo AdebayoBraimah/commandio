@@ -6,8 +6,8 @@ import os
 from time import time
 from typing import Optional
 
-from logutil import LogFile
-from tmpfile import TmpFile
+from commandio.logutil import LogFile
+from commandio.tmpfile import TmpFile
 
 
 # Globlally define (temporary) log file object

@@ -4,7 +4,7 @@
 import os
 from typing import List, Optional, Tuple
 
-from iobase import IOBaseObj
+from commandio.iobase import IOBaseObj
 
 
 class File(IOBaseObj):

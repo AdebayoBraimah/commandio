@@ -9,8 +9,8 @@ import shutil
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple, Union
 
-from fileio import File
-from logutil import LogFile
+from commandio.fileio import File
+from commandio.logutil import LogFile
 
 
 class DependencyError(Exception):
