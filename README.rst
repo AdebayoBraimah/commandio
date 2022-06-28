@@ -1,6 +1,14 @@
 ``commandio``
 ===================
 
+.. image:: https://readthedocs.org/projects/commandio-python/badge/?version=latest
+    :target: https://commandio-python.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :target: https://github.com/psf/black
+   :alt: Code style: Black
+
 Python package that logs and executes commands for the command line.
 
 To install this package:
