@@ -5,8 +5,8 @@ import logging
 from datetime import datetime
 from typing import Any, Dict
 
-from fileio import File
-from enums import LogLevel
+from commandio.fileio import File
+from commandio.enums import LogLevel
 
 
 class LogFile(File):
@@ -123,7 +123,9 @@ class LogFile(File):
         else:
             # Define logging components
             self.logger.setLevel(level=level)
-            file_handler: logging.FileHandler = logging.FileHandler(self.log_file)
+            file_handler: logging.FileHandler = logging.FileHandler(
+                self.log_file
+            )
             formatter: logging.Formatter = logging.Formatter(FORMAT, DATEFMT)
             file_handler.setFormatter(formatter)
             self.logger.addHandler(file_handler)
