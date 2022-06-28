@@ -4,6 +4,9 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+# NOTE: Configuration options used are from:
+#   https://github.com/pypa/setuptools/blob/main/docs/conf.py
+
 # -- Path setup --------------------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -14,7 +17,7 @@ import os
 import sys
 import pathlib
 
-from typing import List
+from typing import Dict, List
 
 _pkg_path: str = str(pathlib.Path(os.path.abspath(__file__)).parents[2])
 sys.path.insert(0, _pkg_path)
@@ -44,10 +47,70 @@ extensions: List[str] = [
     'sphinx.ext.napoleon',
     'sphinxarg.ext',
     'sphinx_autodoc_typehints',
+    'rst.linker',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.extlinks',
 ]
 
-source_suffix = {
+# master_doc: str = "index"
+
+link_files: Dict[str, str] = {
+    '../../CHANGES.rst': dict(
+        using=dict(BB='https://bitbucket.org', GH='https://github.com',),
+        replace=[
+            dict(
+                pattern=r'(Issue #|\B#)(?P<issue>\d+)',
+                url='{package_url}/issues/{issue}',
+            ),
+            dict(
+                pattern=r'(?m:^((?P<scm_version>v?\d+(\.\d+){1,2}))\n[-=]+\n)',
+                with_scm='{text}\n{rev[timestamp]:%d %b %Y}\n',
+            ),
+            dict(
+                pattern=r'PEP[- ](?P<pep_number>\d+)',
+                url='https://peps.python.org/pep-{pep_number:0>4}/',
+            ),
+            dict(
+                pattern=r'(?<!\w)PR #(?P<pull>\d+)',
+                url='{package_url}/pull/{pull}',
+            ),
+        ],
+    ),
+}
+
+source_suffix: Dict[str, str] = {
     ".rst": "restructuredtext",
+}
+
+intersphinx_mapping: Dict[str, str] = {
+    'python': ('https://docs.python.org/3', None),
+}
+
+intersphinx_mapping.update(
+    {
+        'pip': ('https://pip.pypa.io/en/latest', None),
+        'build': ('https://pypa-build.readthedocs.io/en/latest', None),
+        'PyPUG': ('https://packaging.python.org/en/latest/', None),
+        'packaging': ('https://packaging.pypa.io/en/latest/', None),
+        'twine': ('https://twine.readthedocs.io/en/stable/', None),
+        'importlib-resources': (
+            'https://importlib-resources.readthedocs.io/en/latest',
+            None,
+        ),
+    }
+)
+
+# Add support for linking usernames
+github_url = 'https://github.com'
+github_repo_org = 'pypa'
+github_repo_name = 'commandio'
+github_repo_slug = f'{github_repo_org}/{github_repo_name}'
+github_repo_url = f'{github_url}/{github_repo_slug}'
+github_sponsors_url = f'{github_url}/sponsors'
+extlinks = {
+    'user': (f'{github_sponsors_url}/%s', '@%s'),  # noqa: WPS323
+    'pypi': ('https://pypi.org/project/%s', '%s'),  # noqa: WPS323
+    'wiki': ('https://wikipedia.org/wiki/%s', '%s'),  # noqa: WPS323
 }
 
 # Add any paths that contain templates here, relative to this directory.

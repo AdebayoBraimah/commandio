@@ -6,8 +6,9 @@
 Welcome to commandio's documentation!
 =====================================
 
-The ``commandio`` python package is intended to be a convenience suite of tools
-for running and logging UNIX commands on the command line.
+The ``commandio`` (**command IO**) python package is intended to be a convenience suite of tools
+for running and logging UNIX commands on the command line, in addition to file and directory
+handling.
 
 .. toctree::
    :maxdepth: 2
@@ -17,7 +18,7 @@ for running and logging UNIX commands on the command line.
    quickstart
    contributing
    modules
-
+   history
 
 
 

@@ -1,5 +1,5 @@
-commandio package
-=================
+``commandio`` package
+========================
 
 Submodules
 ----------
