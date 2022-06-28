@@ -7,11 +7,11 @@ import pathlib
 
 # Add package/module to PYTHONPATH
 _pkg_path: str = os.path.join(
-    str(pathlib.Path(os.path.abspath(__file__)).parents[1])
+    str(pathlib.Path(os.path.abspath(__file__)).parents[2])
 )
 sys.path.append(_pkg_path)
 
-from workdir import WorkDir
+from commandio.workdir import WorkDir
 
 
 def test_mkdir():
