@@ -19,7 +19,7 @@ Commit messages
 
 
 To aid readability, all commit messages should be prefixed with one or more of
-the following labels (this convention has been inherited from `nibabel <https://github.com/nipy/nibabel>`_:
+the following labels (this convention has been inherited from `nibabel <https://github.com/nipy/nibabel>`_):
                
   * **BF**  : bug fix              
   * **RF**  : refactoring
