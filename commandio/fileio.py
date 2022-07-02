@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
 """File IO methods, functions and operations for the ``commandio`` package.
+
+.. autosummary::
+    :nosignatures:
+
+    File
+
+.. autoclass:: File
+    :members:
 """
 import os
 from typing import List, Optional, Tuple

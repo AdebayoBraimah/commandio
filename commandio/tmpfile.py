@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
 """Temporary file module for the ``commandio`` package.
+
+.. autosummary::
+    :nosignatures:
+
+    TmpFile
+
+.. autoclass:: TmpFile
+    :members:
 """
 import os
 import random

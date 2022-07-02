@@ -50,6 +50,9 @@ extensions: List[str] = [
     'rst.linker',
     'sphinx.ext.intersphinx',
     'sphinx.ext.extlinks',
+    "sphinx.ext.autosummary",
+    "sphinx_autopackagesummary",
+    "sphinx.ext.viewcode",
 ]
 
 # master_doc: str = "index"

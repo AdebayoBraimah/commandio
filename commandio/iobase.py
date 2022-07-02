@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
 """Abstract base class file IO methods, functions and operations for the ``commandio`` package.
+
+.. autosummary::
+    :nosignatures:
+
+    IOBaseObj
+
+.. autoclass:: IOBaseObj
+    :members:
 """
 import os
 import subprocess

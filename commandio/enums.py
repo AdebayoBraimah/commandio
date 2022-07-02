@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
 """Enums module for the ``commandio`` package.
+
+.. autosummary::
+    :nosignatures:
+
+    LogLevel
+
+.. autoclass:: LogLevel
+    :members:
 """
 from enum import Enum, unique
 

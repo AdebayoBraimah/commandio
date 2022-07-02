@@ -11,8 +11,20 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""The :mod: ``commandio`` package contains modules for reading/writing files,
+"""The ``commandio`` package contains modules for reading/writing files,
 logging, and running commands on the command line.
+
+.. autosummary::
+
+    command
+    enums
+    fileio
+    iobase
+    logutil
+    tmpdir
+    tmpfile
+    util
+    workdir
 """
 import os
 import sys

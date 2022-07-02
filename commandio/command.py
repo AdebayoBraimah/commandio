@@ -1,5 +1,17 @@
 # -*- coding: utf-8 -*-
 """Command module for UNIX command line interactions.
+
+.. autosummary::
+    :nosignatures:
+
+    Command
+    DependencyError
+
+.. autoclass:: Command
+    :members:
+
+.. autoclass:: DependencyError
+    :members:
 """
 import os
 import subprocess

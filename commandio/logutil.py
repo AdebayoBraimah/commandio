@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
 """Logging utility module.
+
+.. autosummary::
+    :nosignatures:
+
+    LogFile
+
+.. autoclass:: LogFile
+    :members:
 """
 import logging
 from datetime import datetime

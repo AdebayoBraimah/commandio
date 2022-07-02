@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 """Utility module for the ``commandio`` package.
+
+.. autosummary::
+    :nosignatures:
+
+    timeops
 """
 import os
 

@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
 """Temporary working directory module for the ``commandio`` package.
+
+.. autosummary::
+    :nosignatures:
+
+    TmpDir
+
+.. autoclass:: TmpDir
+    :members:
 """
 import os
 import random

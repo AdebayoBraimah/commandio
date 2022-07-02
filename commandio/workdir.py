@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
 """Working directory module for the ``commandio`` package.
+
+.. autosummary::
+    :nosignatures:
+
+    WorkDir
+
+.. autoclass:: WorkDir
+    :members:
 """
 import os
 import shutil
