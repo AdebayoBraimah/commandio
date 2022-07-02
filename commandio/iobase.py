@@ -30,11 +30,7 @@ class IOBaseObj(ABC):
         src: Input string that represents a file or directory.
 
     Abstract methods:
-        copy: Copies a file or recursively copies a directory using ``copy``
-            and ``copytree`` from ``shutil``. This method may need to be
-            implemented differently should other aspects of the data need
-            to be preserved (i.e. needing to copy the file metadata with the
-            file).
+        copy: Copies a file or recursively copies a directory using ``copy`` and ``copytree`` from ``shutil``. This method may need to be implemented differently should other aspects of the data need to be preserved (i.e. needing to copy the file metadata with the file).
 
     Usage example:
         >>> # Initialize child class and inherit
