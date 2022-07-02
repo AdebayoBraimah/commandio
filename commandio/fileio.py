@@ -216,10 +216,9 @@ class File(IOBaseObj):
             ext: File extension, needed if the file extension of file object is longer than 4 characters.
 
         Returns:
-            Tuple:
-                * Absolute file path, excluding filename.
-                * Filename, excluding extension.
-                * File extension.
+            * Absolute file path, excluding filename.
+            * Filename, excluding extension.
+            * File extension.
         """
         file: str = self.src
         file: str = os.path.abspath(file)
