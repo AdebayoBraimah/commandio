@@ -10,6 +10,7 @@ import os
 
 from time import time
 from typing import Optional
+from functools import wraps
 
 from commandio.logutil import LogFile
 from commandio.tmpfile import TmpFile
@@ -48,9 +49,11 @@ def timeops(log: Optional[LogFile] = None) -> callable:
         Callable function/class
     """
 
+    @wraps(log)
     def decor(func: callable) -> callable:
         """Inner decorated function that accepts functions."""
 
+        @wraps(func)
         def timed(*args, **kwargs) -> callable:
             """Nested decorator function that performs timing of an operation."""
             start: float = time()

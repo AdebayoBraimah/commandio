@@ -117,7 +117,7 @@ class File(IOBaseObj):
     def touch(self) -> None:
         """Creates an empty file.
 
-        This class mehtod is analagous to UNIX's ``touch`` command.
+        This class method is analagous to UNIX's ``touch`` command.
 
         Usage example:
             >>> # Using class object as context manager
@@ -172,7 +172,7 @@ class File(IOBaseObj):
         """Writes/appends text to file.
 
         NOTE:
-            Text written to file is ALWAYS utf-8 encoded.
+            Text written to file is ALWAYS ``utf-8`` encoded.
 
         Usage example:
             >>> # Using class object as context manager
@@ -266,8 +266,7 @@ class File(IOBaseObj):
             remove_newline: Strip newline characters. Defaults to False.
 
         Returns:
-            List of strings, with each element corresponding to a newline in 
-                the file.
+            List of strings, with each element corresponding to a newline in the file.
         """
         with open(self.abspath()) as f:
             text_lines: List[str] = f.readlines()

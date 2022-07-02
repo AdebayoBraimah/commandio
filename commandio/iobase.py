@@ -100,8 +100,7 @@ class IOBaseObj(ABC):
             dst: Destination file path relative to ``src`` file path.
 
         Returns:
-            String that reprents the relative file path of the object from the
-                destination file or directory.
+            String that reprents the relative file path of the object from the destination file or directory.
         """
         if os.path.isfile(self.src):
             return os.path.join(
@@ -139,12 +138,10 @@ class IOBaseObj(ABC):
             "abspath/to/file_namt.txt"
 
         Args:
-            follow_sym_links: If set to true, the absolute path of the
-                symlinked file is returned.
+            follow_sym_links: If set to true, the absolute path of the symlinked file is returned.
 
         Returns:
-            String that represents the absolute file path if it exists,
-                otherwise ``None`` is returned.
+            String that represents the absolute file path if it exists, otherwise ``None`` is returned.
         """
         if follow_sym_links and os.path.exists(self.src):
             return os.path.abspath(os.path.realpath(self.src))
@@ -155,8 +152,7 @@ class IOBaseObj(ABC):
         """Creates a symbolic link with an absolute or relative file path.
 
         NOTE: 
-            * If a directory is used as the input object, then the linked 
-                destination is returned.
+            * If a directory is used as the input object, then the linked destination is returned.
             * This **WILL NOT WORK** on Windows platforms
 
         Usage example:
@@ -184,8 +180,7 @@ class IOBaseObj(ABC):
 
         Args:
             dst: Destination file path.
-            relative: Symbolically link the file or directory using a relative
-                path.
+            relative: Symbolically link the file or directory using a relative path.
 
         Returns:
             String that reprents the absolute path of the sym linked file path.
@@ -317,8 +312,7 @@ class IOBaseObj(ABC):
             "/abs/path/to"
 
         Returns:
-            String that represents the directory name of the file or the parent
-                directory of the directory.
+            String that represents the directory name of the file or the parent directory of the directory.
         """
         return os.path.dirname(self.abspath())
 
