@@ -14,8 +14,13 @@ import subprocess
 from warnings import warn
 
 from shutil import copy, copytree, move
-from typing import Any, List, Tuple, Union
+from typing import Any, List, NewType, Tuple, Union
 from abc import ABC, abstractmethod
+
+
+# Globally define types
+file = NewType('file', str)
+directory = NewType('directory', str)
 
 
 class IOBaseObj(ABC):
@@ -67,7 +72,9 @@ class IOBaseObj(ABC):
         """Representation request method."""
         return f"<{self.__class__.__name__} {self.src}>"
 
-    def relpath(self, dst: str) -> str:
+    def relpath(
+        self, dst: Union[file, directory, str]
+    ) -> Union[file, directory, str]:
         """Returns the relative file path to some destination.
 
         Usage example:
@@ -144,7 +151,9 @@ class IOBaseObj(ABC):
         else:
             return os.path.abspath(self.src)
 
-    def sym_link(self, dst: str, relative: bool = False) -> str:
+    def sym_link(
+        self, dst: Union[file, directory, str], relative: bool = False
+    ) -> Union[file, directory, str]:
         """Creates a symbolic link with an absolute or relative file path.
 
         NOTE: 
@@ -209,7 +218,9 @@ class IOBaseObj(ABC):
         return dst
 
     @abstractmethod
-    def copy(self, dst: str) -> str:
+    def copy(
+        self, dst: Union[file, directory, str]
+    ) -> Union[file, directory, str]:
         """Copies file or recursively copies a directory to some destination.
 
         This method is an abstract method **AND MUST** be overwritten when 
@@ -252,7 +263,7 @@ class IOBaseObj(ABC):
         elif os.path.isdir(src):
             return os.path.abspath(copytree(src=src, dst=dst))
 
-    def basename(self) -> str:
+    def basename(self) -> Union[file, directory, str]:
         """Retrieves file or directory basename.
 
         Usage example:
@@ -282,7 +293,7 @@ class IOBaseObj(ABC):
         """
         return os.path.basename(self.src)
 
-    def dirname(self) -> str:
+    def dirname(self) -> Union[file, directory, str]:
         """Retrieves file or directory basename.
 
         Usage example:
@@ -312,7 +323,9 @@ class IOBaseObj(ABC):
         """
         return os.path.dirname(self.abspath())
 
-    def move(self, dst: str) -> str:
+    def move(
+        self, dst: Union[file, directory, str]
+    ) -> Union[file, directory, str]:
         """Renames/moves a file/directory.
 
         Usage example:
@@ -351,7 +364,7 @@ class IOBaseObj(ABC):
                 move(src=src, dst=dst, copy_function=copytree)
             )
 
-    def join(self, *args) -> str:
+    def join(self, *args) -> Union[file, directory, str]:
         """Joins directory or dirname of a file with additional pathname components.
 
         Usage example:

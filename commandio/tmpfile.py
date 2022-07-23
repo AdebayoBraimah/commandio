@@ -11,9 +11,9 @@
 """
 import os
 import random
-from typing import Optional
+from typing import Optional, Union
 
-from commandio.fileio import File
+from commandio.fileio import File, file, directory
 
 
 class TmpFile(File):
@@ -39,8 +39,8 @@ class TmpFile(File):
 
     def __init__(
         self,
-        tmp_dir: Optional[str] = "",
-        tmp_file: Optional[str] = "",
+        tmp_dir: Optional[Union[directory, str]] = "",
+        tmp_file: Optional[Union[file, str]] = "",
         ext: Optional[str] = "",
     ) -> None:
         """Initialization method for the TmpFile class that inherits from the ``File`` base class, allowing for the creation and maninuplation of temporary files.

@@ -11,9 +11,9 @@
 """
 import logging
 from datetime import datetime
-from typing import Any, Dict
+from typing import Any, Dict, Union
 
-from commandio.fileio import File
+from commandio.fileio import File, file
 from commandio.enums import LogLevel
 
 
@@ -48,7 +48,7 @@ class LogFile(File):
 
     def __init__(
         self,
-        log_file: str = "",
+        log_file: Union[file, str] = "",
         print_to_screen: bool = False,
         format_log_str: bool = False,
         use_root_logger: bool = False,

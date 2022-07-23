@@ -10,9 +10,9 @@
     :members:
 """
 import os
-from typing import List, Optional, Tuple
+from typing import List, Optional, Tuple, Union
 
-from commandio.iobase import IOBaseObj
+from commandio.iobase import IOBaseObj, file, directory
 
 
 class File(IOBaseObj):
@@ -45,7 +45,10 @@ class File(IOBaseObj):
     __slots__ = ("src", "ext")
 
     def __init__(
-        self, src: str, ext: Optional[str] = "", assert_exists: bool = False
+        self,
+        src: Union[file, str],
+        ext: Optional[str] = "",
+        assert_exists: bool = False,
     ) -> None:
         """Initialization method for the File base class.
 
@@ -88,7 +91,7 @@ class File(IOBaseObj):
                 self.src
             ), f"Input file {self.src} does not exist."
 
-    def copy(self, dst: str) -> str:
+    def copy(self, dst: Union[file, directory, str]) -> str:
         """Copies file to some source destination.
 
         Usage example:

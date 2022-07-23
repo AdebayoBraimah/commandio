@@ -12,7 +12,9 @@
 import os
 import shutil
 
-from commandio.iobase import IOBaseObj
+from typing import Union
+
+from commandio.iobase import IOBaseObj, directory
 
 
 class WorkDir(IOBaseObj):
@@ -45,7 +47,9 @@ class WorkDir(IOBaseObj):
 
     __slots__ = ("src", "parent_dir")
 
-    def __init__(self, src: str, use_cwd: bool = False) -> None:
+    def __init__(
+        self, src: Union[directory, str], use_cwd: bool = False
+    ) -> None:
         """Initialization method for the ``WorkDir`` base class.
 
         Usage example:
@@ -134,7 +138,7 @@ class WorkDir(IOBaseObj):
         else:
             return None
 
-    def copy(self, dst: str) -> str:
+    def copy(self, dst: Union[directory, str]) -> str:
         """Recursively copies a directory to some destination.
 
         Usage example:

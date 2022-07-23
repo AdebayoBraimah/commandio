@@ -12,7 +12,9 @@
 import os
 import random
 
-from commandio.workdir import WorkDir
+from typing import Union
+
+from commandio.workdir import WorkDir, directory
 
 
 class TmpDir(WorkDir):
@@ -46,7 +48,10 @@ class TmpDir(WorkDir):
     """
 
     def __init__(
-        self, src: str, use_cwd: bool = False, cleanup: bool = True
+        self,
+        src: Union[directory, str],
+        use_cwd: bool = False,
+        cleanup: bool = True,
     ) -> None:
         """Initialization method for the TmpDir child class.
 
