@@ -195,7 +195,7 @@ class File(IOBaseObj):
             file.close()
         return None
 
-    def file_parts(self, ext: str = "") -> Tuple[str, str, str]:
+    def file_parts(self, ext: str = "") -> Tuple[directory, file, str]:
         """Similar to MATLAB's ``fileparts``, this function splits a file and its path into its constituent parts:
 
             * file path
@@ -262,7 +262,21 @@ class File(IOBaseObj):
         """Reads input file text.
 
         Usage example:
+            >>> from typing import Lines
             >>>
+            >>> # Using class object as context manager
+            >>> with File("file_name.txt") as file:
+            ...     lines: List[str] = file.read(remove_newline=True)
+            ...
+            >>> lines
+            ['These are the file contents','new lines are separate elements']
+            >>>
+            >>> # or
+            >>>
+            >>> file = File("file_name.txt")
+            >>> lines: List[str] = file.read()
+            >>> lines
+            ['These are the file contents','new lines are separate elements']
 
         Args:
             remove_newline: Strip newline characters. Defaults to False.
