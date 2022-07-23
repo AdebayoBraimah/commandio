@@ -274,7 +274,7 @@ class File(IOBaseObj):
             >>> # or
             >>>
             >>> file = File("file_name.txt")
-            >>> lines: List[str] = file.read()
+            >>> lines: List[str] = file.read(remove_newline=True)
             >>> lines
             ['These are the file contents','new lines are separate elements']
 
